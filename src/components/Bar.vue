@@ -1,5 +1,5 @@
 <template>
-  <div class="column" :style="style"></div>
+  <div class="bar" :style="style"></div>
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
 
 
 <style scoped>
-.column {
+.bar {
     width: 20px;
 }
 </style>

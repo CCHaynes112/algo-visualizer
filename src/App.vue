@@ -1,27 +1,17 @@
 <template>
   <div>
-    <div class="control-container">
-      Column Count
-      <input type="text" v-model="columnCount" />
-      <br />
-      Sort Speed
-      <input type="number" v-model="sortSpeed" />
-      <br />
-      <button v-on:click="generateColumns()">Generate Columns</button>
-      <button v-on:click="bubbleSort()">Bubble Sort</button>
-      <button v-on:click="selectionSort()">Selection Sort</button>
-      <button v-on:click="insertionSort()">Insertion Sort</button>
-    </div>
+    <BarController />
     <BarContainer />
   </div>
 </template>
 
 <script>
+import BarController from "./components/BarController.vue";
 import BarContainer from "./components/BarContainer.vue";
 
 export default {
   name: "App",
-  components: { BarContainer },
+  components: { BarController, BarContainer },
   data() {
     return {};
   },
@@ -31,7 +21,4 @@ export default {
 </script>
 
 <style>
-.control-container {
-  padding: 15px 0 15px 0;
-}
 </style>
