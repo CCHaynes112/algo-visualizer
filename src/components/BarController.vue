@@ -14,12 +14,28 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import sleep from "../utils/sleep";
 
 export default {
   name: "BarController",
   computed: {
-    ...mapState("chart", ["barCount", "sortSpeed"]),
+    sortSpeed: {
+      get() {
+        return this.$store.state.chart.sortSpeed;
+      },
+      set(value) {
+        this.updateSortSpeed(value);
+      },
+    },
+    barCount: {
+      get() {
+        return this.$store.state.chart.barCount;
+      },
+      set(value) {
+        this.updateBarCount(value);
+      },
+    },
     ...mapGetters("chart", ["bars"]),
   },
   methods: {
@@ -28,7 +44,7 @@ export default {
         this.generateBar();
       }
     },
-    bubbleSort() {
+    async bubbleSort() {
       console.log("Sorting...");
       let swapped;
       do {
@@ -41,6 +57,7 @@ export default {
             payload = { index: i + 1, val: tmp };
             this.updateBar(payload);
             swapped = true;
+            await sleep(this.sortSpeed);
           }
         }
       } while (swapped);
@@ -49,8 +66,8 @@ export default {
     ...mapActions("chart", [
       "generateBar",
       "updateBar",
-      "selectionSort",
-      "insertionSort",
+      "updateBarCount",
+      "updateSortSpeed",
     ]),
   },
 };
