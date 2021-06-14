@@ -12,7 +12,7 @@ export default {
   computed: {
     style() {
       return (
-        "height: " + this.height + "px; background-color: rgb(" + this.colorValue + ", " + this.colorValue + ", 100);"
+        "height: " + this.height + "px; background-color: rgb(100, " + this.colorValue + ", 150);"
       );
     },
   },

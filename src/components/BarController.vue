@@ -1,15 +1,21 @@
 <template>
   <div class="control-container">
-    Element Count
-    <v-text-field type="text" v-model="barCount" />
-    <br />
-    Sort Speed
-    <v-text-field type="number" v-model="sortSpeed" />
-    <br />
-    <v-btn v-on:click="generateBars()">Generate Elements</v-btn>
-    <v-btn v-on:click="bubbleSort()">Bubble Sort</v-btn>
-    <v-btn v-on:click="selectionSort()">Selection Sort</v-btn>
-    <v-btn v-on:click="insertionSort()">Insertion Sort</v-btn>
+    <div class="input-container">
+      <v-text-field label="Element Count" v-model="barCount" />
+      <v-text-field label="Sort Speed" v-model="sortSpeed" />
+    </div>
+    <div class="btn-container">
+      <v-btn color="secondary" v-on:click="generateBars()"
+        >Generate Elements</v-btn
+      >
+      <v-btn color="primary" v-on:click="bubbleSort()">Bubble Sort</v-btn>
+      <v-btn color="primary" v-on:click="selectionSort()"
+        >Selection Sort</v-btn
+      >
+      <v-btn color="primary" v-on:click="insertionSort()"
+        >Insertion Sort</v-btn
+      >
+    </div>
   </div>
 </template>
 
@@ -37,6 +43,9 @@ export default {
       },
     },
     ...mapGetters("chart", ["bars"]),
+  },
+  created() {
+    this.generateBars();
   },
   methods: {
     generateBars() {
@@ -114,6 +123,21 @@ export default {
 
 <style scoped>
 .control-container {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100vw;
+  height: 30vh;
+  justify-content: space-around;
   padding: 15px 0 15px 0;
+}
+
+.btn-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+
+.input-container {
 }
 </style>

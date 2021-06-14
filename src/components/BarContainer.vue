@@ -16,9 +16,6 @@ import Bar from "./Bar.vue";
 export default {
   name: "BarContainer",
   components: { Bar },
-  created() {
-    // this.$store.dispatch("generateBars");
-  },
   computed: { ...mapState("chart", ["bars"]) },
 };
 </script>
@@ -26,5 +23,9 @@ export default {
 <style scoped>
 .bar-container {
   display: flex;
+  align-items: flex-end;
+  width: 100vw;
+  height: 70vh;
+  padding: 20px;
 }
 </style>

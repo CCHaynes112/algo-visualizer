@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <BarController />
-    <BarContainer />
-  </div>
+  <v-app light class="app">
+    <BarContainer class="container" />
+    <BarController class="controller" />
+  </v-app>
 </template>
 
 <script>
@@ -21,4 +21,11 @@ export default {
 </script>
 
 <style>
+.app {
+  background-color: #fafafa !important;
+}
+.controller {
+}
+.container {
+}
 </style>

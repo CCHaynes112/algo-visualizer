@@ -10,7 +10,7 @@ function getRandomInt(max) {
 const state = () => ({
     barCount: 100,
     bars: [],
-    sortSpeed: 250, // In ms
+    sortSpeed: 100, // In ms
 })
 
 // getters
@@ -42,7 +42,7 @@ const actions = {
 // mutations
 const mutations = {
     generateBar(state) {
-        state.bars.push(getRandomInt(100))
+        state.bars.push(getRandomInt(300))
     },
     updateBar(state, payload) {
         Vue.set(state.bars, payload.index, payload.val)
