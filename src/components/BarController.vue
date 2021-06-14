@@ -1,15 +1,15 @@
 <template>
   <div class="control-container">
     Element Count
-    <input type="text" v-model="barCount" />
+    <v-text-field type="text" v-model="barCount" />
     <br />
     Sort Speed
-    <input type="number" v-model="sortSpeed" />
+    <v-text-field type="number" v-model="sortSpeed" />
     <br />
-    <button v-on:click="generateBars()">Generate Elements</button>
-    <button v-on:click="bubbleSort()">Bubble Sort</button>
-    <button v-on:click="selectionSort()">Selection Sort</button>
-    <button v-on:click="insertionSort()">Insertion Sort</button>
+    <v-btn v-on:click="generateBars()">Generate Elements</v-btn>
+    <v-btn v-on:click="bubbleSort()">Bubble Sort</v-btn>
+    <v-btn v-on:click="selectionSort()">Selection Sort</v-btn>
+    <v-btn v-on:click="insertionSort()">Insertion Sort</v-btn>
   </div>
 </template>
 
@@ -40,6 +40,7 @@ export default {
   },
   methods: {
     generateBars() {
+      this.clearBars();
       for (let i = 0; i < this.barCount; i++) {
         this.generateBar();
       }
@@ -63,9 +64,47 @@ export default {
       } while (swapped);
       console.log("Done!");
     },
+    async selectionSort() {
+      console.log("Sorting...");
+      let initialArraylength = this.bars.length;
+
+      for (let i = 0; i < initialArraylength; i++) {
+        // Finding the smallest number in the subarray
+        let min = i;
+        for (let j = i + 1; j < initialArraylength; j++) {
+          if (this.bars[j] < this.bars[min]) {
+            min = j;
+          }
+        }
+        if (min != i) {
+          // Swapping the elements
+          let tmp = this.bars[i];
+          let payload = { index: i, val: this.bars[min] };
+          this.updateBar(payload);
+          payload = { index: min, val: tmp };
+          this.updateBar(payload);
+          await sleep(this.sortSpeed);
+        }
+      }
+      console.log("Done!");
+    },
+    async insertionSort() {
+      console.log("Sorting...");
+      for (let i = 1; i < this.bars.length; i++) {
+        let currentEl = this.bars[i];
+        for (var j = i - 1; j >= 0 && this.bars[j] > currentEl; j--) {
+          let payload = { index: j + 1, val: this.bars[j] };
+          this.updateBar(payload);
+          await sleep(this.sortSpeed);
+        }
+        this.bars[j + 1] = currentEl;
+      }
+      console.log("Done!");
+    },
     ...mapActions("chart", [
       "generateBar",
       "updateBar",
+      "clearBars",
       "updateBarCount",
       "updateSortSpeed",
     ]),
