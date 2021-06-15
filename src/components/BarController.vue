@@ -83,6 +83,7 @@ export default {
         for (let j = i + 1; j < initialArraylength; j++) {
           if (this.bars[j] < this.bars[min]) {
             min = j;
+            await sleep(this.sortSpeed);
           }
         }
         if (min != i) {
@@ -92,7 +93,6 @@ export default {
           this.updateBar(payload);
           payload = { index: min, val: tmp };
           this.updateBar(payload);
-          await sleep(this.sortSpeed);
         }
       }
       console.log("Done!");
@@ -106,7 +106,8 @@ export default {
           this.updateBar(payload);
           await sleep(this.sortSpeed);
         }
-        this.bars[j + 1] = currentEl;
+        let payload = {index: j + 1, val: currentEl}
+        this.updateBar(payload);
       }
       console.log("Done!");
     },

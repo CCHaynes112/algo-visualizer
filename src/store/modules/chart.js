@@ -1,11 +1,5 @@
 import Vue from "vue";
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-
-
-
+import getRandomInt from "../../utils/randomInt"
 // initial state
 const state = () => ({
     barCount: 100,

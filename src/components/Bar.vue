@@ -1,5 +1,10 @@
 <template>
-  <div class="bar" :style="style"></div>
+  <v-tooltip top>
+    <template v-slot:activator="{ on, attrs }">
+    <div v-on="on" v-bind="attrs" class="bar" :style="style"></div>
+    </template>
+    <span>{{ height }}</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -12,7 +17,11 @@ export default {
   computed: {
     style() {
       return (
-        "height: " + this.height + "px; background-color: rgb(100, " + this.colorValue + ", 150);"
+        "height: " +
+        this.height +
+        "px; background-color: rgb(100, " +
+        this.colorValue +
+        ", 150);"
       );
     },
   },
@@ -25,6 +34,6 @@ export default {
 
 <style scoped>
 .bar {
-    width: 20px;
+  width: 20px;
 }
 </style>

@@ -26,6 +26,7 @@ export default {
   align-items: flex-end;
   width: 100vw;
   height: 70vh;
-  padding: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 </style>
