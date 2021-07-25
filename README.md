@@ -1,6 +1,6 @@
 # Algovisualizer
 
-Samll prototype app to visual some common algorithims
+Samll prototype app to visualize some common algorithims
 
 ![demo](https://github.com/CCHaynes112/algo-visualizer/blob/main/demo.gif)
 
